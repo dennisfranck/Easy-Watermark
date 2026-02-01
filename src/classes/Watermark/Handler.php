@@ -315,6 +315,11 @@ class Handler {
 
 				$this->processor->clean();
 
+				// Trigger garbage collector to free up memory.
+				if ( function_exists( 'gc_collect_cycles' ) ) {
+					gc_collect_cycles();
+				}
+
 				if ( is_array( $results ) ) {
 					foreach ( $results as $watermark_id => $result ) {
 						if ( is_wp_error( $result ) ) {
@@ -322,6 +327,9 @@ class Handler {
 							$error->add( 'watermark_error', sprintf( __( 'Watermark "%1$s" couldn\'t be applied for "%2$s" image size: %3$s', 'easy-watermark' ), Watermark::get( $watermark_id )->post_title, $size, $result->get_error_message() ) );
 						}
 					}
+				} elseif ( false === $results ) {
+					/* translators: image size. */
+					$error->add( 'process_error', sprintf( __( 'Could not process "%s" image size.', 'easy-watermark' ), $size ) );
 				}
 			}
 		}

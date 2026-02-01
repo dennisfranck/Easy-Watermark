@@ -310,7 +310,7 @@ class AttachmentProcessorGD extends AttachmentProcessor {
 					return false;
 				}
 
-				if ( 'png' === $this->image_type && $this->is_alpha_png( $this->image_file ) ) {
+				if ( 'png' === $this->image_type ) {
 					// Preserve opacity for png images.
 					imagealphablending( $this->output_image, false );
 					imagesavealpha( $this->output_image, true );
@@ -367,7 +367,7 @@ class AttachmentProcessorGD extends AttachmentProcessor {
 			return false;
 		}
 
-		if ( 'png' === $type && $this->is_alpha_png( $file_path ) ) {
+		if ( 'png' === $type ) {
 			imagealphablending( $image, false );
 			imagesavealpha( $image, true );
 		}
@@ -462,10 +462,11 @@ class AttachmentProcessorGD extends AttachmentProcessor {
 			$tmp_image = imagecreatetruecolor( $new_width, $new_height );
 
 			if ( ! $tmp_image ) {
+				imagedestroy( $watermark_image );
 				return new WP_Error( 'gd_error', __( 'Could not create temporary image. Please check your server configuration.', 'easy-watermark' ) );
 			}
 
-			if ( 'png' === $watermark_type && $this->is_alpha_png( $watermark_file ) ) {
+			if ( 'png' === $watermark_type ) {
 				imagealphablending( $tmp_image, false );
 				imagesavealpha( $tmp_image, true );
 			}

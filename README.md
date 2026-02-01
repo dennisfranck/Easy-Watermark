@@ -20,6 +20,7 @@ Easy Watermark can automatically add watermark to images as they are uploaded to
 *   **Modern Image Formats**: Full support for WebP and AVIF watermarking (requires PHP 8.1+ and GD with AVIF support).
 *   **SVG Watermarks**: Use SVG files as watermarks! They are automatically rasterized for high-quality application.
 *   **PHP 8+ Compatibility**: Fully compatible and tested with PHP 8.0, 8.1, 8.2 and 8.3.
+*   **Bulk Watermark Reliability**: Fixed memory leaks and transparency issues in bulk watermarking (Handler & GD Processor).
 *   **UI Fixes**: Improved preview layout, fixed text alignment, and added auto-save triggers for smoother workflow.
 
 ### Plugin features
