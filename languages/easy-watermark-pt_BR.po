@@ -1,0 +1,1186 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Watermark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-01 01:33+0000\n"
+"PO-Revision-Date: 2026-02-01 01:33+0000\n"
+"Last-Translator: Dennis Franck Barbosa\n"
+"Language-Team: Português do Brasil\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.1; wp-6.9; php-8.3.28\n"
+"X-Domain: easy-watermark"
+
+#: src/bootstrap.php:20
+msgid "Easy Watermark &rsaquo; Error"
+msgstr "Easy Watermark &rsaquo; Erro"
+
+#: src/classes/Placeholders/Resolver.php:67
+msgid "Placeholder must be an instance of abstract Placeholder class."
+msgstr "Placeholder deve ser uma instância da classe abstrata Placeholder."
+
+#: src/classes/Backup/Manager.php:69
+msgid "Backup"
+msgstr "Backup"
+
+#: src/classes/Backup/Manager.php:83
+msgid "Enable backup"
+msgstr "Habilitar backup"
+
+#: src/classes/Backup/Manager.php:100
+msgid "Backupper"
+msgstr "Sistema de Backup"
+
+#: src/classes/Backup/LocalBackupper.php:51
+msgid "Attachment file not found."
+msgstr "Arquivo de anexo não encontrado."
+
+#: src/classes/Backup/LocalBackupper.php:63
+msgid "Could not copy attachment file to backup directory."
+msgstr "Não foi possível copiar o arquivo de anexo para o diretório de backup."
+
+#: src/classes/Backup/LocalBackupper.php:86
+msgid "Could not restore attachment."
+msgstr "Não foi possível restaurar o anexo."
+
+#: src/classes/Backup/LocalBackupper.php:109
+msgid "Could not remove backup file."
+msgstr "Não foi possível remover o arquivo de backup."
+
+#: src/classes/Backup/LocalBackupper.php:158
+msgid "Could not create backup directory."
+msgstr "Não foi possível criar o diretório de backup."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessor.php:73
+msgid "Params should be an array."
+msgstr "Os parâmetros devem ser um array."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessor.php:120
+msgid ""
+"Watermark should be an instance of EasyWatermark\\Watermark\\Watermark class."
+msgstr "Watermark deve ser uma instância da classe EasyWatermark\\Watermark\\Watermark."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:205
+msgid "Watermark should be instance of Easywatermark\\Watermark\\Watermark."
+msgstr "Watermark deve ser uma instância de Easywatermark\\Watermark\\Watermark."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:209
+msgid "Text preview can be only generated for text watermark."
+msgstr "A pré-visualização de texto só pode ser gerada para marca d'água de texto."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:213
+msgid "Watermark text not specified."
+msgstr "Texto da marca d'água não especificado."
+
+#. font name
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:220
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:545
+#, php-format
+msgid "Font \"%s\" could not be found. "
+msgstr "Fonte \"%s\" não encontrada. "
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:228
+msgid "Could not create output image."
+msgstr "Não foi possível criar a imagem de saída."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:407
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:538
+msgid "Could not create output image. Please check your server configuration."
+msgstr "Não foi possível criar a imagem de saída. Por favor, verifique a configuração do servidor."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:420
+msgid "Watermark image file does not exist."
+msgstr "O arquivo de imagem da marca d'água não existe."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:426
+msgid "Something went wrong while processing watermark image."
+msgstr "Algo deu errado ao processar a imagem da marca d'água."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:465
+msgid ""
+"Could not create temporary image. Please check your server configuration."
+msgstr "Não foi possível criar imagem temporária. Por favor, verifique a configuração do servidor."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:523
+msgid "Something went wrong while applying watermark image."
+msgstr "Algo deu errado ao aplicar a imagem da marca d'água."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:561
+msgid "Something went wrong while allocating text color."
+msgstr "Algo deu errado ao alocar a cor do texto."
+
+#: src/classes/AttachmentProcessor/AttachmentProcessorGD.php:578
+msgid "Something went wrong while applying watermark text."
+msgstr "Algo deu errado ao aplicar o texto da marca d'água."
+
+#: src/classes/Watermark/Handler.php:127
+msgid "Text"
+msgstr "Texto"
+
+#: src/classes/Watermark/Handler.php:131
+msgid "Image"
+msgstr "Imagem"
+
+#: src/classes/Watermark/Handler.php:243
+msgid ""
+"You try to watermark an item that doesn't exist. Please refresh the page and "
+"try again."
+msgstr "Você tentou aplicar marca d'água em um item que não existe. Por favor, atualize a página e tente novamente."
+
+#. watermark name, image size, original error message.
+#: src/classes/Watermark/Handler.php:322
+#, php-format
+msgid "Watermark \"%1$s\" couldn't be applied for \"%2$s\" image size: %3$s"
+msgstr "A marca d'água \"%1$s\" não pôde ser aplicada para o tamanho de imagem \"%2$s\": %3$s"
+
+#: src/classes/Watermark/Handler.php:486
+msgctxt "Placeholder for watermark text preview if no text specified."
+msgid "no_text"
+msgstr "sem_texto"
+
+#: src/classes/Watermark/Ajax.php:51 src/classes/Watermark/Ajax.php:87
+#: src/classes/Watermark/Ajax.php:121
+msgid "Something went wrong. Please try again."
+msgstr "Algo deu errado. Por favor, tente novamente."
+
+#: src/classes/Watermark/Ajax.php:61 src/classes/Watermark/Ajax.php:94
+msgid "You don't have permission to apply watermarks."
+msgstr "Você não tem permissão para aplicar marcas d'água."
+
+#: src/classes/Watermark/Ajax.php:68
+msgid "Watermark has been applied."
+msgstr "A marca d'água foi aplicada."
+
+#: src/classes/Watermark/Ajax.php:102
+msgid "All watermarks has been applied."
+msgstr "Todas as marcas d'água foram aplicadas."
+
+#: src/classes/Watermark/Ajax.php:128
+msgid "You don't have permission to restore backup."
+msgstr "Você não tem permissão para restaurar o backup."
+
+#: src/classes/Watermark/Ajax.php:137
+msgid "Original image has been restored."
+msgstr "A imagem original foi restaurada."
+
+#: src/classes/Watermark/Ajax.php:156
+msgid "No watermark data to save."
+msgstr "Nenhum dado de marca d'água para salvar."
+
+#: src/classes/Watermark/Ajax.php:167
+msgid "Something went wrong while saving temporary data."
+msgstr "Algo deu errado ao salvar dados temporários."
+
+#: src/classes/Watermark/Ajax.php:188
+msgid "Invalid request."
+msgstr "Requisição inválida."
+
+#: src/classes/Watermark/Ajax.php:219 src/classes/Core/Assets.php:135
+#: src/classes/Core/Assets.php:253
+msgid "Something went wrong. Please refresh the page and try again."
+msgstr "Algo deu errado. Por favor, atualize a página e tente novamente."
+
+#. errors count.
+#: src/classes/Watermark/Ajax.php:262
+#, php-format
+msgid "%s error has occured."
+msgid_plural "%s errors has occured."
+msgstr[0] "%s erro ocorreu."
+msgstr[1] "%s erros ocorreram."
+
+#: src/classes/Watermark/PostType.php:51
+msgctxt "post type general name"
+msgid "Watermarks"
+msgstr "Marcas d'água"
+
+#: src/classes/Watermark/PostType.php:52
+msgctxt "post type singular name"
+msgid "Watermark"
+msgstr "Marca d'água"
+
+#: src/classes/Watermark/PostType.php:53
+msgctxt "admin menu"
+msgid "Watermarks"
+msgstr "Marcas d'água"
+
+#: src/classes/Watermark/PostType.php:54
+msgctxt "add new on admin bar"
+msgid "Watermark"
+msgstr "Marca d'água"
+
+#: src/classes/Watermark/PostType.php:55
+msgctxt "Watermark"
+msgid "Add New"
+msgstr "Adicionar Nova"
+
+#: src/classes/Watermark/PostType.php:56
+#: src/views/dashboard/pages/watermarks.php:51
+msgid "Add New Watermark"
+msgstr "Adicionar Nova Marca d'água"
+
+#: src/classes/Watermark/PostType.php:57
+msgid "New Watermark"
+msgstr "Nova Marca d'água"
+
+#: src/classes/Watermark/PostType.php:58
+msgid "Edit Watermark"
+msgstr "Editar Marca d'água"
+
+#: src/classes/Watermark/PostType.php:59
+msgid "View Watermark"
+msgstr "Ver Marca d'água"
+
+#: src/classes/Watermark/PostType.php:60 src/classes/Core/Assets.php:181
+#: src/views/dashboard/pages/tools.php:21
+msgid "All Watermarks"
+msgstr "Todas as Marcas d'água"
+
+#: src/classes/Watermark/PostType.php:61
+msgid "Search Watermarks"
+msgstr "Pesquisar Marcas d'água"
+
+#: src/classes/Watermark/PostType.php:62
+msgid "Parent Watermarks:"
+msgstr "Marcas d'água ascendentes:"
+
+#: src/classes/Watermark/PostType.php:63
+msgid "No watermarks found."
+msgstr "Nenhuma marca d'água encontrada."
+
+#: src/classes/Watermark/PostType.php:64
+msgid "No watermarks found in Trash."
+msgstr "Nenhuma marca d'água encontrada na lixeira."
+
+#: src/classes/Watermark/PostType.php:69
+#: src/classes/Dashboard/Watermarks.php:25
+#: src/classes/Metaboxes/Attachment/Watermarks.php:33
+msgid "Watermarks"
+msgstr "Marcas d'água"
+
+#: src/classes/Watermark/PostType.php:142
+#: src/classes/Watermark/PostType.php:145
+msgid "Watermark updated."
+msgstr "Marca d'água atualizada."
+
+#: src/classes/Watermark/PostType.php:143
+msgid "Custom field updated."
+msgstr "Campo personalizado atualizado."
+
+#: src/classes/Watermark/PostType.php:144
+msgid "Custom field deleted."
+msgstr "Campo personalizado excluído."
+
+#: src/classes/Watermark/PostType.php:146
+#, php-format
+msgid "Watermark restored to revision from %s"
+msgstr "Marca d'água restaurada para a revisão de %s"
+
+#. phpcs:ignore
+#: src/classes/Watermark/PostType.php:147
+#: src/classes/Watermark/PostType.php:148
+msgid "Watermark saved."
+msgstr "Marca d'água salva."
+
+#: src/classes/Watermark/PostType.php:149
+msgid "Watermark submitted."
+msgstr "Marca d'água enviada."
+
+#: src/classes/Watermark/PostType.php:151
+#, php-format
+msgid "Watermark scheduled for: <strong>%1$s</strong>."
+msgstr "Marca d'água agendada para: <strong>%1$s</strong>."
+
+#: src/classes/Watermark/PostType.php:152
+msgid "M j, Y @ G:i"
+msgstr "j \\d\\e F \\d\\e Y @ G:i"
+
+#: src/classes/Watermark/PostType.php:154
+msgid "Watermark draft updated."
+msgstr "Rascunho de marca d'água atualizado."
+
+#. updated watermarks number
+#: src/classes/Watermark/PostType.php:174
+#, php-format
+msgid "%s watermark updated."
+msgid_plural "%s watermarks updated."
+msgstr[0] "%s marca d'água atualizada."
+msgstr[1] "%s marcas d'água atualizadas."
+
+#: src/classes/Watermark/PostType.php:175
+msgid "1 watermarkt not updated, somebody is editing it."
+msgstr "1 marca d'água não atualizada, alguém está editando."
+
+#. not updated watermarks number
+#: src/classes/Watermark/PostType.php:177
+#, php-format
+msgid "%s watermark not updated, somebody is editing it."
+msgid_plural "%s watermarks not updated, somebody is editing them."
+msgstr[0] "%s marca d'água não atualizada, alguém está editando."
+msgstr[1] "%s marcas d'água não atualizadas, alguém está editando-as."
+
+#. deleted watermarks number
+#: src/classes/Watermark/PostType.php:179
+#, php-format
+msgid "%s watermark permanently deleted."
+msgid_plural "%s watermarks permanently deleted."
+msgstr[0] "%s marca d'água excluída permanentemente."
+msgstr[1] "%s marcas d'água excluídas permanentemente."
+
+#. moved to trash watermarks number
+#: src/classes/Watermark/PostType.php:181
+#, php-format
+msgid "%s watermark moved to the Trash."
+msgid_plural "%s watermarks moved to the Trash."
+msgstr[0] "%s marca d'água movida para a lixeira."
+msgstr[1] "%s marcas d'água movidas para a lixeira."
+
+#. restored from trash watermarks number
+#: src/classes/Watermark/PostType.php:183
+#, php-format
+msgid "%s watermark restored from the Trash."
+msgid_plural "%s watermarks restored from the Trash."
+msgstr[0] "%s marca d'água restaurada da lixeira."
+msgstr[1] "%s marcas d'água restauradas da lixeira."
+
+#: src/classes/Core/Installer.php:369
+msgid "Image Watermark"
+msgstr "Marca d'água de Imagem"
+
+#: src/classes/Core/Installer.php:420
+msgid "Text Watermark"
+msgstr "Marca d'água de Texto"
+
+#. argument type
+#: src/classes/Core/View.php:95
+#, php-format
+msgid "View name should be a string, %s given."
+msgstr "O nome da view deve ser uma string, %s fornecido."
+
+#: src/classes/Core/View.php:95
+msgid "Invalid view name type"
+msgstr "Tipo de nome de view inválido"
+
+#. view name
+#: src/classes/Core/View.php:102
+#, php-format
+msgid "View file does not exist: %s"
+msgstr "Arquivo de view não existe: %s"
+
+#: src/classes/Core/View.php:102
+msgid "View not found"
+msgstr "View não encontrada"
+
+#. watermark name
+#: src/classes/Core/Assets.php:144
+#, php-format
+msgid "You are about to permanently delete \"%s\". Are you sure?"
+msgstr "Você está prestes a excluir permanentemente \"%s\". Tem certeza?"
+
+#: src/classes/Core/Assets.php:145
+msgid "There are no images eligible for watermarking."
+msgstr "Não há imagens elegíveis para aplicação de marca d'água."
+
+#: src/classes/Core/Assets.php:146
+msgid "There are no backed up images."
+msgstr "Não há imagens com backup."
+
+#. watermarked images number
+#: src/classes/Core/Assets.php:148 src/classes/Core/Assets.php:188
+#, php-format
+msgid "Watermarked %s images"
+msgstr "Aplicada marca d'água em %s imagens"
+
+#. watermarked images number
+#: src/classes/Core/Assets.php:150 src/classes/Core/Assets.php:190
+#, php-format
+msgid "Restored %s images"
+msgstr "Restauradas %s imagens"
+
+#. watermarked images number
+#: src/classes/Core/Assets.php:152 src/classes/Core/Assets.php:192
+#, php-format
+msgid "Successfully watermarked %s images."
+msgstr "%s imagens receberam marca d'água com sucesso."
+
+#. watermarked images number
+#: src/classes/Core/Assets.php:154 src/classes/Core/Assets.php:194
+#, php-format
+msgid "Successfully restored %s images."
+msgstr "%s imagens foram restauradas com sucesso."
+
+#. %1&s - image title, %2&s - error content
+#: src/classes/Core/Assets.php:156 src/classes/Core/Assets.php:196
+#, php-format
+msgid "An error occured while processing %1$s: %2$s"
+msgstr "Ocorreu um erro ao processar %1$s: %2$s"
+
+#: src/classes/Core/Assets.php:175
+msgid "No items selected"
+msgstr "Nenhum item selecionado"
+
+#: src/classes/Core/Assets.php:176
+msgid "Watermark Selected"
+msgstr "Aplicar Marca d'água nos Selecionados"
+
+#: src/classes/Core/Assets.php:177
+msgid "Watermark"
+msgstr "Marca d'água"
+
+#: src/classes/Core/Assets.php:178
+msgid "Restore original images"
+msgstr "Restaurar imagens originais"
+
+#: src/classes/Core/Assets.php:179 src/classes/Core/Assets.php:252
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/classes/Core/Assets.php:180 src/views/dashboard/pages/tools.php:19
+msgid "Select Watermark"
+msgstr "Selecionar Marca d'água"
+
+#: src/classes/Core/Assets.php:182
+msgctxt "label for unsupported attachment type (other than image)"
+msgid "Not supported"
+msgstr "Não suportado"
+
+#: src/classes/Core/Assets.php:183
+msgctxt "label for image used as watermark"
+msgid "Used as watermark"
+msgstr "Usado como marca d'água"
+
+#: src/classes/Core/Assets.php:184
+msgctxt "label for attachments which has no backup to restore"
+msgid "No backup available"
+msgstr "Nenhum backup disponível"
+
+#: src/classes/Core/Assets.php:185
+msgid "None from the selected items qualified for watermarking."
+msgstr "Nenhum dos itens selecionados qualificado para marca d'água."
+
+#: src/classes/Core/Assets.php:186
+msgid "No backup available for any of selected items."
+msgstr "Nenhum backup disponível para nenhum dos itens selecionados."
+
+#: src/classes/Core/Assets.php:250
+msgid "Yes"
+msgstr "Sim"
+
+#: src/classes/Core/Assets.php:251
+msgid "OK"
+msgstr "OK"
+
+#: src/classes/Dashboard/Settings.php:23
+msgid "Settings"
+msgstr "Configurações"
+
+#: src/classes/Dashboard/Tools.php:23
+msgid "Tools"
+msgstr "Ferramentas"
+
+#: src/classes/Dashboard/Tools.php:37
+msgid "Settings saved."
+msgstr "Configurações salvas."
+
+#: src/classes/Dashboard/Permissions.php:22
+msgid "Permissions"
+msgstr "Permissões"
+
+#: src/classes/Dashboard/Permissions.php:86
+msgid "Permissions saved."
+msgstr "Permissões salvas."
+
+#: src/classes/Dashboard/Watermarks.php:39
+msgid "Watermark has been deleted."
+msgstr "A marca d'água foi excluída."
+
+#. Name of the plugin
+#: src/classes/Dashboard/Dashboard.php:65
+#: src/classes/Dashboard/Dashboard.php:66 src/views/dashboard/wrap.php:12
+#: src/views/notices/auto-watermark-warning.php:13
+msgid "Easy Watermark"
+msgstr "Easy Watermark"
+
+#: src/classes/Features/CacheBusting.php:47
+msgctxt "\"Cache busting\" setting description line 1"
+msgid ""
+"This feature will add version parameter to image file url. This will prevent "
+"browser from using cached image."
+msgstr "Esta funcionalidade adicionará um parâmetro de versão à URL do arquivo de imagem. Isso impedirá que o navegador use a imagem em cache."
+
+#: src/classes/Features/CacheBusting.php:52
+msgctxt "\"Cache busting\" setting description line 2"
+msgid ""
+"Without this option turned on browser might display original image which was "
+"cached before instead of the watermarked one."
+msgstr "Sem esta opção ativada, o navegador pode exibir a imagem original que estava em cache em vez da imagem com marca d'água."
+
+#: src/classes/Features/CacheBusting.php:57
+msgctxt "\"Cache busting\" setting description line 3"
+msgid ""
+"Turn this off only if it causes problems in your environment (e.g. images do "
+"not show at all)."
+msgstr "Desative isso apenas se causar problemas no seu ambiente (ex: imagens não aparecem)."
+
+#: src/classes/Features/CacheBusting.php:65
+msgid "Cache busting"
+msgstr "Cache busting"
+
+#: src/classes/Features/SrcsetFilter.php:50
+msgid "Filter srcset"
+msgstr "Filtrar srcset"
+
+#: src/classes/Features/SrcsetFilter.php:51
+msgctxt "Continuation of \"Filter srcset\" setting label."
+msgid "for watermarked images"
+msgstr "para imagens com marca d'água"
+
+#: src/classes/Features/SrcsetFilter.php:55
+msgctxt "\"Filter srcset\" setting description line 1"
+msgid ""
+"Srcset attribute contains information about other image sizes and lets the "
+"browser decide which image to display based on the screen size."
+msgstr "O atributo srcset contém informações sobre outros tamanhos de imagem e permite que o navegador decida qual imagem exibir com base no tamanho da tela."
+
+#: src/classes/Features/SrcsetFilter.php:60
+msgctxt "\"Filter srcset\" setting description line 2"
+msgid ""
+"This is good in general but it might cause problems if some watermarks are "
+"applied only to certain image sizes."
+msgstr "Isso é bom em geral, mas pode causar problemas se algumas marcas d'água forem aplicadas apenas a certos tamanhos de imagem."
+
+#: src/classes/Features/SrcsetFilter.php:65
+msgctxt "\"Filter srcset\" setting description line 3"
+msgid ""
+"With this option enabled srcset attribute will only contain image sizes "
+"watermarked the same way."
+msgstr "Com esta opção ativada, o atributo srcset conterá apenas tamanhos de imagem com marca d'água da mesma forma."
+
+#: src/classes/Settings/Settings.php:59
+msgid "General"
+msgstr "Geral"
+
+#: src/classes/Settings/Settings.php:101
+msgid "Jpeg Quality"
+msgstr "Qualidade JPEG"
+
+#: src/classes/Settings/Settings.php:103
+msgid ""
+"Set jpeg quality from 0 (worst quality, smaller file) to 100 (best quality, "
+"biggest file). Set -1 for default quality."
+msgstr "Defina a qualidade JPEG de 0 (pior qualidade, arquivo menor) a 100 (melhor qualidade, arquivo maior). Defina -1 para qualidade padrão."
+
+#. section variable type
+#: src/classes/Settings/Settings.php:135 src/classes/Settings/Field.php:188
+#, php-format
+msgid ""
+"Section must be an instance of EasyWatermark\\Settings\\Section. %s given"
+msgstr "A seção deve ser uma instância de EasyWatermark\\Settings\\Section. %s fornecido"
+
+#. field variable type
+#: src/classes/Settings/Section.php:106
+#, php-format
+msgid ""
+"Settings must be an instance of EasyWatermark\\Settings\\Settings. %s given"
+msgstr "As configurações devem ser uma instância de EasyWatermark\\Settings\\Settings. %s fornecido"
+
+#. field variable type
+#: src/classes/Settings/Section.php:122
+#, php-format
+msgid "Field must be an instance of EasyWatermark\\Settings\\Field. %s given"
+msgstr "O campo deve ser uma instância de EasyWatermark\\Settings\\Field. %s fornecido"
+
+#: src/views/notices/auto-watermark-warning.php:14
+msgid ""
+"All images uploaded on this page will be watermarked by Auto Watermark "
+"feature."
+msgstr "Todas as imagens enviadas nesta página receberão marca d'água pela funcionalidade de Marca d'água Automática."
+
+#: src/views/notices/auto-watermark-warning.php:16
+msgctxt "link text for media library in grid mode"
+msgid "Grid Mode"
+msgstr "Modo Grade"
+
+#. link to medial library in grid mode with text "Grid Mode"
+#: src/views/notices/auto-watermark-warning.php:20
+#, php-format
+msgid "Use %s instead, so you can enable/disable Auto Watermark feature."
+msgstr "Use %s em vez disso, para que você possa ativar/desativar a funcionalidade de Marca d'água Automática."
+
+#: src/views/notices/untrash-error.php:10
+msgid ""
+"You can only have 2 active watermarks. Please delete some other watermark to "
+"restore this one."
+msgstr "Você pode ter apenas 2 marcas d'água ativas. Por favor, exclua alguma outra marca d'água para restaurar esta."
+
+#: src/views/notices/watermarks-number-exceeded-error.php:10
+msgid "You can only configure 2 watermarks. Please edit already existing ones."
+msgstr "Você pode configurar apenas 2 marcas d'água. Por favor, edite as já existentes."
+
+#: src/views/upload/switch.php:13
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:29
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:34
+msgid "Auto Watermark"
+msgstr "Marca d'água Automática"
+
+#: src/views/edit-screen/watermark-type-selector.php:11
+msgid "Watermark Type"
+msgstr "Tipo de Marca d'água"
+
+#: src/classes/Placeholders/Blog/BlogName.php:25
+msgid "Blog name"
+msgstr "Nome do blog"
+
+#: src/classes/Placeholders/Blog/BlogName.php:26
+msgid "John Doe's Blog"
+msgstr "Blog do João da Silva"
+
+#: src/classes/Placeholders/Blog/AdminEmail.php:25
+msgid "Admin email"
+msgstr "E-mail do administrador"
+
+#: src/classes/Placeholders/Blog/AdminEmail.php:26
+msgid "admin@example.com"
+msgstr "admin@exemplo.com"
+
+#: src/classes/Placeholders/Blog/BlogUrl.php:25
+msgid "Blog URL"
+msgstr "URL do blog"
+
+#: src/classes/Placeholders/Blog/BlogUrl.php:26
+msgid "http://example.com"
+msgstr "http://exemplo.com"
+
+#: src/classes/Placeholders/DateTime/Time.php:25
+msgid "Current time"
+msgstr "Hora atual"
+
+#: src/classes/Placeholders/DateTime/Date.php:25
+msgid "Current date"
+msgstr "Data atual"
+
+#: src/classes/Placeholders/User/UserLogin.php:25
+msgid "User login"
+msgstr "Login do usuário"
+
+#: src/classes/Placeholders/User/UserLogin.php:26
+#: src/classes/Placeholders/Author/AuthorLogin.php:26
+msgid "johndoe"
+msgstr "joaosilva"
+
+#: src/classes/Placeholders/User/UserFirstName.php:25
+msgid "User first name"
+msgstr "Primeiro nome do usuário"
+
+#: src/classes/Placeholders/User/UserFirstName.php:26
+#: src/classes/Placeholders/Author/AuthorFirstName.php:26
+msgid "John"
+msgstr "João"
+
+#: src/classes/Placeholders/User/UserLastName.php:25
+msgid "User last name"
+msgstr "Sobrenome do usuário"
+
+#: src/classes/Placeholders/User/UserLastName.php:26
+#: src/classes/Placeholders/Author/AuthorLastName.php:26
+msgid "Doe"
+msgstr "Silva"
+
+#: src/classes/Placeholders/User/UserID.php:25
+msgid "User ID"
+msgstr "ID do usuário"
+
+#: src/classes/Placeholders/User/UserEmail.php:25
+msgid "User email"
+msgstr "E-mail do usuário"
+
+#: src/classes/Placeholders/User/UserEmail.php:26
+#: src/classes/Placeholders/Author/AuthorEmail.php:26
+msgid "john.doe@example.com"
+msgstr "joao.silva@exemplo.com"
+
+#: src/classes/Placeholders/User/UserRole.php:25
+msgid "User role"
+msgstr "Função do usuário"
+
+#: src/classes/Placeholders/User/UserRole.php:26
+#: src/classes/Placeholders/Author/AuthorRole.php:26
+msgid "Subscriber"
+msgstr "Assinante"
+
+#: src/classes/Placeholders/User/UserUrl.php:25
+msgid "User website URL"
+msgstr "URL do site do usuário"
+
+#: src/classes/Placeholders/User/UserUrl.php:26
+#: src/classes/Placeholders/Author/AuthorUrl.php:26
+msgid "johndoe.com"
+msgstr "joaosilva.com"
+
+#: src/classes/Placeholders/User/UserDisplayName.php:25
+msgid "User display name"
+msgstr "Nome de exibição do usuário"
+
+#: src/classes/Placeholders/User/UserDisplayName.php:26
+#: src/classes/Placeholders/Author/AuthorDisplayName.php:26
+msgid "John - fast finegrs - Doe"
+msgstr "João - dedos rápidos - Silva"
+
+#: src/classes/Placeholders/User/UserNicename.php:25
+msgid "User nicename"
+msgstr "Nome amigável do usuário"
+
+#: src/classes/Placeholders/User/UserNicename.php:26
+#: src/classes/Placeholders/Author/AuthorNicename.php:26
+msgid "Johhnie"
+msgstr "Joaozinho"
+
+#: src/classes/Placeholders/Author/AuthorRole.php:25
+msgid "Author role"
+msgstr "Função do autor"
+
+#: src/classes/Placeholders/Author/AuthorEmail.php:25
+msgid "Author email"
+msgstr "E-mail do autor"
+
+#: src/classes/Placeholders/Author/AuthorLastName.php:25
+msgid "Author last name"
+msgstr "Sobrenome do autor"
+
+#: src/classes/Placeholders/Author/AuthorDisplayName.php:25
+msgid "Author display name"
+msgstr "Nome de exibição do autor"
+
+#: src/classes/Placeholders/Author/AuthorLogin.php:25
+msgid "Author login"
+msgstr "Login do autor"
+
+#: src/classes/Placeholders/Author/AuthorUrl.php:25
+msgid "Author website URL"
+msgstr "URL do site do autor"
+
+#: src/classes/Placeholders/Author/AuthorNicename.php:25
+msgid "Author nicename"
+msgstr "Nome amigável do autor"
+
+#: src/classes/Placeholders/Author/AuthorID.php:25
+msgid "Author ID"
+msgstr "ID do autor"
+
+#: src/classes/Placeholders/Author/AuthorFirstName.php:25
+msgid "Author first name"
+msgstr "Primeiro nome do autor"
+
+#: src/classes/Placeholders/Attachment/AttachmentWidth.php:25
+msgid "Attachment width"
+msgstr "Largura do anexo"
+
+#: src/classes/Placeholders/Attachment/AttachmentUploadDate.php:25
+msgid "Attachment upload date"
+msgstr "Data de envio do anexo"
+
+#: src/classes/Placeholders/Attachment/AttachmentSize.php:25
+msgid "Attachment size"
+msgstr "Tamanho do anexo"
+
+#: src/classes/Placeholders/Attachment/AttachmentSize.php:26
+msgid "2 MB"
+msgstr "2 MB"
+
+#: src/classes/Placeholders/Attachment/AttachmentPage.php:25
+msgid "Attachment page URL"
+msgstr "URL da página do anexo"
+
+#: src/classes/Placeholders/Attachment/AttachmentPage.php:26
+msgid "http://example.com/forest-landscape"
+msgstr "http://exemplo.com/paisagem-floresta"
+
+#: src/classes/Placeholders/Attachment/AttachmentDirectUrl.php:25
+msgid "Attachment direct URL"
+msgstr "URL direta do anexo"
+
+#: src/classes/Placeholders/Attachment/AttachmentDirectUrl.php:26
+msgid "http://example.com/wp-content/uploads/2018/02/forest-landscape.jpg"
+msgstr "http://exemplo.com/wp-content/uploads/2018/02/paisagem-floresta.jpg"
+
+#: src/classes/Placeholders/Attachment/AttachmentTitle.php:25
+msgid "Attachment title"
+msgstr "Título do anexo"
+
+#: src/classes/Placeholders/Attachment/AttachmentTitle.php:26
+msgid "Forest landscape"
+msgstr "Paisagem de floresta"
+
+#: src/classes/Placeholders/Attachment/AttachmentMimeType.php:25
+msgid "Attachment MIME type"
+msgstr "Tipo MIME do anexo"
+
+#: src/classes/Placeholders/Attachment/AttachmentID.php:25
+msgid "Attachment ID"
+msgstr "ID do anexo"
+
+#: src/classes/Placeholders/Attachment/AttachmentHeight.php:25
+msgid "Attachment height"
+msgstr "Altura do anexo"
+
+#: src/classes/Metaboxes/Watermark/Preview.php:60
+msgid "Select preview image"
+msgstr "Selecionar imagem de pré-visualização"
+
+#: src/classes/Metaboxes/Watermark/Preview.php:61
+msgid "Change preview image"
+msgstr "Alterar imagem de pré-visualização"
+
+#: src/classes/Metaboxes/Watermark/Preview.php:141
+msgid "No attachment id."
+msgstr "Nenhum ID de anexo."
+
+#: src/classes/Metaboxes/Watermark/Preview.php:147
+msgid "No watermark id."
+msgstr "Nenhum ID de marca d'água."
+
+#: src/classes/Metaboxes/Watermark/Preview.php:163
+msgid "Saving preview image failed."
+msgstr "Falha ao salvar a imagem de pré-visualização."
+
+#: src/classes/Metaboxes/Watermark/ApplyingRules.php:28
+msgid "Applying Rules"
+msgstr "Regras de Aplicação"
+
+#: src/views/dashboard/pages/permissions.php:11
+msgid ""
+"Select, which user roles can have a permission to apply watermarks (only "
+"roles with permission to upload files are listed here)"
+msgstr "Selecione quais funções de usuário podem ter permissão para aplicar marcas d'água (apenas funções com permissão para enviar arquivos são listadas aqui)"
+
+#: src/views/dashboard/pages/permissions.php:27
+msgid "Allow to create watermarks"
+msgstr "Permitir criar marcas d'água"
+
+#: src/views/dashboard/pages/permissions.php:33
+msgid "Allow to edit others watermarks"
+msgstr "Permitir editar marcas d'água de outros"
+
+#: src/views/dashboard/pages/permissions.php:39
+msgid "Allow to apply watermarks"
+msgstr "Permitir aplicar marcas d'água"
+
+#: src/views/dashboard/pages/watermarks.php:37
+msgid "Edit"
+msgstr "Editar"
+
+#: src/views/dashboard/pages/watermarks.php:41
+msgid "Delete Permanently"
+msgstr "Excluir Permanentemente"
+
+#: src/views/dashboard/pages/tools.php:12
+msgid "Bulk Watermark"
+msgstr "Marca d'água em Massa"
+
+#: src/views/dashboard/pages/tools.php:14
+msgid ""
+"Using this tool you can quickly apply watermark to all images in the Media "
+"Library."
+msgstr "Usando esta ferramenta, você pode aplicar rapidamente marcas d'água a todas as imagens na Biblioteca de Mídia."
+
+#: src/views/dashboard/pages/tools.php:28
+msgid "Start"
+msgstr "Iniciar"
+
+#: src/views/dashboard/pages/tools.php:29
+msgid ""
+"Note: The same watermark will never get applied twice to the same image. "
+"This tool is safe to use even if some of the images are already watermarked."
+msgstr "Nota: A mesma marca d'água nunca será aplicada duas vezes à mesma imagem. Esta ferramenta é segura para uso mesmo se algumas imagens já tiverem marca d'água."
+
+#: src/views/dashboard/pages/tools.php:31
+msgid ""
+"There are no image attachments in your Media Library available for "
+"watermarking."
+msgstr "Não há anexos de imagem em sua Biblioteca de Mídia disponíveis para marca d'água."
+
+#: src/views/dashboard/pages/tools.php:34
+msgctxt "link text for new watermark page"
+msgid "create watermark"
+msgstr "criar marca d'água"
+
+#. %s is a "create watermark" link
+#: src/views/dashboard/pages/tools.php:36
+#, php-format
+msgid "There are no watermarks configured. Please %s first."
+msgstr "Não há marcas d'água configuradas. Por favor, %s primeiro."
+
+#: src/views/dashboard/pages/tools.php:44
+msgid "Restore Backup"
+msgstr "Restaurar Backup"
+
+#: src/views/dashboard/pages/tools.php:46
+msgid "Here you can quickly restore backup for all images in Media Library."
+msgstr "Aqui você pode restaurar rapidamente o backup de todas as imagens na Biblioteca de Mídia."
+
+#. %s is backed up images count
+#: src/views/dashboard/pages/tools.php:51
+#, php-format
+msgid "There is %s backed up image in your Media Library."
+msgid_plural "There are %s backed up images in your Media Library."
+msgstr[0] "Existe %s imagem com backup em sua Biblioteca de Mídia."
+msgstr[1] "Existem %s imagens com backup em sua Biblioteca de Mídia."
+
+#: src/views/dashboard/pages/tools.php:61
+msgid "Restore"
+msgstr "Restaurar"
+
+#: src/views/dashboard/pages/tools.php:62
+msgid "There are no backed up images in your Media Library."
+msgstr "Não há imagens com backup em sua Biblioteca de Mídia."
+
+#: src/views/edit-screen/metaboxes/watermark/scaling.php:13
+msgid "Scaling mode"
+msgstr "Modo de escala"
+
+#: src/views/edit-screen/metaboxes/watermark/scaling.php:16
+msgid "None"
+msgstr "Nenhum"
+
+#: src/views/edit-screen/metaboxes/watermark/scaling.php:17
+msgid "Cover"
+msgstr "Cobrir"
+
+#: src/views/edit-screen/metaboxes/watermark/scaling.php:18
+msgid "Contain"
+msgstr "Conter"
+
+#: src/views/edit-screen/metaboxes/watermark/scaling.php:19
+msgid "Fit to width"
+msgstr "Ajustar à largura"
+
+#: src/views/edit-screen/metaboxes/watermark/scaling.php:20
+msgid "Fit to height"
+msgstr "Ajustar à altura"
+
+#: src/views/edit-screen/metaboxes/watermark/scaling.php:25
+msgid "Scale down only"
+msgstr "Apenas reduzir"
+
+#: src/views/edit-screen/metaboxes/watermark/scaling.php:28
+msgid ""
+"Check this option to scale watermark only if watermark image is larger than "
+"the image being watermarked."
+msgstr "Marque esta opção para redimensionar a marca d'água apenas se a imagem da marca d'água for maior que a imagem a ser marcada."
+
+#: src/views/edit-screen/metaboxes/watermark/scaling.php:30
+msgid ""
+"Note: if this option is not checked watermark image will also get scaled up "
+"on bigger images which might result in loss of quality/redability."
+msgstr "Nota: se esta opção não estiver marcada, a imagem da marca d'água também será ampliada em imagens maiores, o que pode resultar em perda de qualidade/legibilidade."
+
+#: src/views/edit-screen/metaboxes/watermark/scaling.php:34
+msgid "Scale"
+msgstr "Escala"
+
+#: src/views/edit-screen/metaboxes/watermark/alignment.php:13
+msgid "Alignment"
+msgstr "Alinhamento"
+
+#: src/views/edit-screen/metaboxes/watermark/alignment.php:46
+msgid "Offset"
+msgstr "Deslocamento"
+
+#: src/views/edit-screen/metaboxes/watermark/alignment.php:50
+msgid "x"
+msgstr "x"
+
+#: src/views/edit-screen/metaboxes/watermark/alignment.php:57
+#: src/views/edit-screen/metaboxes/watermark/alignment.php:71
+msgid "px"
+msgstr "px"
+
+#: src/views/edit-screen/metaboxes/watermark/alignment.php:58
+#: src/views/edit-screen/metaboxes/watermark/alignment.php:72
+msgid "%"
+msgstr "%"
+
+#: src/views/edit-screen/metaboxes/watermark/alignment.php:64
+msgid "y"
+msgstr "y"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:13
+msgid "Image sizes"
+msgstr "Tamanhos de imagem"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:24
+msgid "Select which image sizes should be watermarked"
+msgstr "Selecione quais tamanhos de imagem devem receber marca d'água"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:30
+msgid ""
+"Auto Watermark option allows to apply watermark automatically during image "
+"upload. Below you can configure this behavior."
+msgstr "A opção de Marca d'água Automática permite aplicar marca d'água automaticamente durante o envio da imagem. Abaixo você pode configurar este comportamento."
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:37
+msgid "Automatically apply this watermark during image upload"
+msgstr "Aplicar automaticamente esta marca d'água durante o envio da imagem"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:42
+msgid "Image types"
+msgstr "Tipos de imagem"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:53
+msgid "Select which image types should be automatically watermarked"
+msgstr "Selecione quais tipos de imagem devem receber marca d'água automaticamente"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:57
+msgid "Post types"
+msgstr "Tipos de post"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:62
+msgid "Unattached Images"
+msgstr "Imagens Não Anexadas"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:63
+msgid "uploaded through the media library page"
+msgstr "enviadas através da página da biblioteca de mídia"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:76
+msgid "Select what post type attachments should be automatically watermarked"
+msgstr "Selecione quais anexos de tipos de post devem receber marca d'água automaticamente"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:80
+msgid "Allow for all users"
+msgstr "Permitir para todos os usuários"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:83
+msgid "Check this to enable Auto Watermark for all users"
+msgstr "Marque para ativar a Marca d'água Automática para todos os usuários"
+
+#: src/views/edit-screen/metaboxes/watermark/applying-rules.php:85
+msgid "If unchecked, Auto Watermark function will depend on the role settings."
+msgstr "Se desmarcado, a função de Marca d'água Automática dependerá das configurações da função."
+
+#: src/views/edit-screen/metaboxes/watermark/text-options.php:13
+msgid "Font"
+msgstr "Fonte"
+
+#: src/views/edit-screen/metaboxes/watermark/text-options.php:23
+msgid "Text color"
+msgstr "Cor do texto"
+
+#: src/views/edit-screen/metaboxes/watermark/text-options.php:28
+msgid "Text size"
+msgstr "Tamanho do texto"
+
+#: src/views/edit-screen/metaboxes/watermark/text-options.php:39
+msgid "Text angle"
+msgstr "Ângulo do texto"
+
+#: src/views/edit-screen/metaboxes/watermark/text-options.php:50
+#: src/views/edit-screen/metaboxes/watermark/watermark-content.php:73
+msgid "Opacity"
+msgstr "Opacidade"
+
+#: src/views/edit-screen/metaboxes/watermark/preview-popup.php:14
+msgid "Watermark preview"
+msgstr "Pré-visualização da marca d'água"
+
+#: src/views/edit-screen/metaboxes/watermark/watermark-content.php:21
+msgid "Choose Watermark Image"
+msgstr "Escolher Imagem da Marca d'água"
+
+#: src/views/edit-screen/metaboxes/watermark/watermark-content.php:21
+msgid "Set as Watermark Image"
+msgstr "Definir como Imagem da Marca d'água"
+
+#: src/views/edit-screen/metaboxes/watermark/watermark-content.php:21
+msgid "Select/Upload Image"
+msgstr "Selecionar/Enviar Imagem"
+
+#: src/views/edit-screen/metaboxes/watermark/watermark-content.php:25
+msgid "Click on image to change it."
+msgstr "Clique na imagem para alterá-la."
+
+#: src/views/edit-screen/metaboxes/watermark/watermark-content.php:89
+msgid "Watermark text"
+msgstr "Texto da marca d'água"
+
+#: src/views/edit-screen/metaboxes/watermark/watermark-content.php:90
+msgid "You can use placeholders listed in \"Placeholders\" metabox."
+msgstr "Você pode usar marcadores listados na metabox \"Marcadores\"."
+
+#: src/views/edit-screen/metaboxes/watermark/placeholders.php:10
+msgid "Search placeholders"
+msgstr "Pesquisar marcadores"
+
+#: src/views/edit-screen/metaboxes/watermark/placeholders.php:18
+msgid "Example:"
+msgstr "Exemplo:"
+
+#: src/views/edit-screen/metaboxes/watermark/preview.php:14
+msgid "Choose preview image"
+msgstr "Escolher imagem de pré-visualização"
+
+#: src/views/edit-screen/metaboxes/watermark/preview.php:14
+msgid "Set as preview image"
+msgstr "Definir como imagem de pré-visualização"
+
+#: src/views/edit-screen/metaboxes/watermark/preview.php:18
+msgid "Click on image to show fullsize preview."
+msgstr "Clique na imagem para mostrar a pré-visualização em tamanho real."
+
+#: src/views/edit-screen/metaboxes/attachment/watermarks.php:18
+msgid "Applied"
+msgstr "Aplicado"
+
+#: src/views/edit-screen/metaboxes/attachment/watermarks.php:20
+msgid "Apply"
+msgstr "Aplicar"
+
+#: src/views/edit-screen/metaboxes/attachment/watermarks.php:32
+msgid "Apply all watermarks"
+msgstr "Aplicar todas as marcas d'água"
+
+#: src/views/edit-screen/metaboxes/attachment/watermarks.php:34
+msgid "Apply remaining watermarks"
+msgstr "Aplicar marcas d'água restantes"
+
+#: src/views/edit-screen/metaboxes/attachment/watermarks.php:37
+msgid "Applies all available watermarks to this image only."
+msgstr "Aplica todas as marcas d'água disponíveis apenas a esta imagem."
+
+#: src/views/edit-screen/metaboxes/attachment/watermarks.php:43
+msgid "Restore original image"
+msgstr "Restaurar imagem original"
+
+#: src/views/edit-screen/metaboxes/attachment/watermarks.php:48
+msgid "There are no watermarks configured."
+msgstr "Não há marcas d'água configuradas."
+
+#: src/views/edit-screen/metaboxes/attachment/watermarks.php:49
+msgid "Create watermark"
+msgstr "Criar marca d'água"
+
+#: src/views/edit-screen/metaboxes/attachment/watermarks.php:53
+msgid "This image contains watermarks which has been removed:"
+msgstr "Esta imagem contém marcas d'água que foram removidas:"
+
+#. Description of the plugin
+msgid ""
+"This plugin can automatically add image and text watermark to pictures as "
+"they are uploaded to WordPress media library. You can also watermark "
+"existing images manually (all at once or an every single image). Watermark "
+"image can be a png, gif (alpha channel supported in both cases) or jpg. It's "
+"also possibile to set watermark opacity (doesn't apply to png with alpha "
+"channel). For text watermark you can select font, set color, size, angle and "
+"opacity."
+msgstr "Este plugin pode adicionar automaticamente marcas d'água de imagem e texto às fotos à medida que são enviadas para a biblioteca de mídia do WordPress. Você também pode marcar imagens existentes manualmente (todas de uma vez ou em cada imagem individualmente). A imagem da marca d'água pode ser png, gif (canal alfa suportado em ambos os casos) ou jpg. Também é possível definir a opacidade da marca d'água (não se aplica a png com canal alfa). Para marca d'água de texto, você pode selecionar a fonte, definir cor, tamanho, ângulo e opacidade."
+
+#. Author of the plugin
+msgid "BracketSpace"
+msgstr "BracketSpace"
+
+#. Author URI of the plugin
+msgid "https://bracketspace.com/"
+msgstr "https://bracketspace.com/"
