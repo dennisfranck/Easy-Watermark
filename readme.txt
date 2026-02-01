@@ -9,7 +9,7 @@ License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: easy-watermark
 
-Allows to add watermark to images automatically on upload or manually. Now with WebP, AVIF and SVG support!
+Allows to add watermark to images automatically on upload or manually. Now with WebP, AVIF and SVG support! Fully compatible with PHP 8+ (tested up to 8.3).
 
 == Description ==
 
@@ -18,7 +18,7 @@ Easy Watermark can automatically add watermark to images as they are uploaded to
 **Community Fixes & Improvements:**
 *   **Modern Image Formats**: Full support for WebP and AVIF watermarking (requires PHP 8.1+ and GD with AVIF support).
 *   **SVG Watermarks**: Use SVG files as watermarks! They are automatically rasterized for high-quality application.
-*   **PHP 8+ Compatibility**: Fixed deprecated notices and errors for PHP 8.0, 8.1, 8.2+.
+*   **PHP 8+ Compatibility**: Fully compatible and tested with PHP 8.0, 8.1, 8.2 and 8.3.
 *   **UI Fixes**: Improved preview layout, fixed text alignment, and added auto-save triggers for smoother workflow.
 
 = See the demo =
@@ -129,7 +129,7 @@ Unfortunately, no. It is planned though for one of the releases in the undefined
 = 1.0.12 =
 * [Improved] Added support for WebP and AVIF images (watermarking and preview).
 * [Improved] Added support for SVG watermarks (automatically converted to raster).
-* [Fixed] PHP 8.0, 8.1, 8.2+ compatibility (deprecated notices, fatal errors).
+* [Fixed] PHP 8+ compatibility (Tested up to PHP 8.3).
 * [Fixed] Text alignment in watermark list description.
 * [Fixed] Tooltips replaced with clear descriptions below buttons.
 * [Fixed] Auto-save trigger after applying watermark to ensure thumbnails update.
