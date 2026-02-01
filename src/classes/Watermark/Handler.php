@@ -1,0 +1,653 @@
+<?php
+/**
+ * Handler class
+ *
+ * @package easy-watermark
+ */
+
+namespace EasyWatermark\Watermark;
+
+use EasyWatermark\AttachmentProcessor;
+use EasyWatermark\AttachmentProcessor\Manager as ProcessorManager;
+use EasyWatermark\Backup\BackupperInterface;
+use EasyWatermark\Backup\Manager as BackupManager;
+use EasyWatermark\Settings\Settings;
+use EasyWatermark\Helpers\Image as ImageHelper;
+use EasyWatermark\Metaboxes\Attachment\Watermarks;
+use EasyWatermark\Placeholders\Resolver;
+use WP_Error;
+
+/**
+ * Handler class
+ */
+class Handler {
+
+	/**
+	 * If set to true, watermarks will not be applied.
+	 *
+	 * @var boolean
+	 */
+	private $lock = false;
+
+	/**
+	 * AttachmentProcessor instance
+	 *
+	 * @var AttachmentProcessor
+	 */
+	private $processor;
+
+	/**
+	 * Backupper instance
+	 *
+	 * @var Backupper
+	 */
+	private $backupper;
+
+	/**
+	 * Placeholders Resolver instance
+	 *
+	 * @var Resolver
+	 */
+	private $resolver;
+
+	/**
+	 * Settings instance
+	 *
+	 * @var Settings
+	 */
+	private $settings;
+
+	/**
+	 * Temporarily stored meta for newly uploaded attachment
+	 *
+	 * @var Settings
+	 */
+	private $tmp_meta;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+
+		new Ajax( $this );
+		new Hooks( $this );
+
+		$this->settings = Settings::get();
+
+		$backup    = $this->settings->get_setting( 'backup/backup' );
+		$backupper = $this->settings->get_setting( 'backup/backupper' );
+
+		if ( false === $backup || ! $backupper ) {
+			// If backup is not enabled load local backuper for temporary backups.
+			$backupper = 'local';
+		}
+
+		$this->backupper = BackupManager::get()->get_object( $backupper );
+		$this->processor = ProcessorManager::get()->get_object( 'gd' );
+		$this->resolver  = Resolver::get();
+
+		$this->processor->set_param( 'jpeg_quality', $this->settings->get_setting( 'general/jpeg_quality' ) );
+
+	}
+
+	/**
+	 * Returns array of all published watermarks
+	 *
+	 * @return array
+	 */
+	public function get_watermarks() {
+
+		$posts = get_posts( [
+			'post_type'      => 'watermark',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+		] );
+
+		$watermarks = [];
+
+		foreach ( $posts as $post ) {
+			$watermarks[] = Watermark::get( $post );
+		}
+
+		return $watermarks;
+
+	}
+
+	/**
+	 * Returns available watermark types
+	 *
+	 * @return array
+	 */
+	public function get_watermark_types() {
+
+		global $post;
+
+		$types = [
+			'text'  => [
+				'label'     => __( 'Text', 'easy-watermark' ),
+				'available' => true,
+			],
+			'image' => [
+				'label'     => __( 'Image', 'easy-watermark' ),
+				'available' => true,
+			],
+		];
+
+		$types = apply_filters( 'easy-watermark/watermark-types', $types );
+
+		$watermarks = $this->get_watermarks();
+
+		/*
+		 * Allow multiple watermarks of the same type.
+		 *
+		foreach ( $watermarks as $watermark ) {
+			if ( $post && $watermark->ID === $post->ID ) {
+				continue;
+			}
+
+			if ( array_key_exists( $watermark->type, $types ) ) {
+				$types[ $watermark->type ]['available'] = false;
+			}
+		}
+		*/
+
+		return $types;
+
+	}
+
+	/**
+	 * Applies single watermark
+	 *
+	 * @param  integer $attachment_id Attachment id.
+	 * @param  integer $watermark_id  Watermark id.
+	 * @return boolean|WP_Error
+	 */
+	public function apply_single_watermark( $attachment_id, $watermark_id ) {
+
+		if ( true === $this->lock ) {
+			return true;
+		}
+
+		$watermark = Watermark::get( $watermark_id );
+
+		if ( 'publish' !== $watermark->post_status ) {
+			return false;
+		}
+
+		return $this->apply_watermarks( $attachment_id, [ $watermark ] );
+
+	}
+
+	/**
+	 * Applies single watermark
+	 *
+	 * @param  integer $attachment_id Attachment id.
+	 * @return boolean|WP_Error
+	 */
+	public function apply_all_watermarks( $attachment_id ) {
+
+		if ( true === $this->lock ) {
+			return true;
+		}
+
+		$watermarks = $this->get_watermarks();
+
+		return $this->apply_watermarks( $attachment_id, $watermarks );
+
+	}
+
+	/**
+	 * Applies single watermark
+	 *
+	 * @param  integer $attachment_id Attachment ID.
+	 * @param  array   $watermarks    Array of Watermark objects.
+	 * @param  array   $meta          Attachment metadata.
+	 * @return bool|WP_Error
+	 */
+	public function apply_watermarks( $attachment_id, $watermarks, $meta = [] ) {
+
+		if ( true === $this->lock ) {
+			return false;
+		}
+
+		if ( empty( $watermarks ) ) {
+			return false;
+		}
+
+		$used_as_watermark = get_post_meta( $attachment_id, '_ew_used_as_watermark', true );
+
+		if ( $used_as_watermark ) {
+			return false;
+		}
+
+		$attachment           = get_post( $attachment_id );
+		$available_mime_types = ImageHelper::get_available_mime_types();
+
+		if ( ! array_key_exists( $attachment->post_mime_type, $available_mime_types ) ) {
+			return false;
+		}
+
+		$applied_watermarks = get_post_meta( $attachment_id, '_ew_applied_watermarks', true );
+
+		if ( ! is_array( $applied_watermarks ) ) {
+			$applied_watermarks = [];
+		}
+
+		if ( empty( $meta ) ) {
+			$meta = get_post_meta( $attachment_id, '_wp_attachment_metadata', true );
+		}
+
+		$error = new WP_Error();
+
+		if ( ! $meta ) {
+			$error->add( 'empty_metadata', __( 'You try to watermark an item that doesn\'t exist. Please refresh the page and try again.', 'easy-watermark' ) );
+
+			return $error;
+		}
+
+		$watermarks = array_filter( $watermarks, function( $watermark ) use ( $attachment_id, $attachment, $meta, $applied_watermarks ) {
+			if ( array_key_exists( $watermark->ID, $applied_watermarks ) ) {
+				return false;
+			}
+
+			/**
+			 * This filter allows to programatically prevent watermarking certain
+			 * attachment if `false` returned from attached function.
+			 *
+			 * @param boolean   $should_apply       Whether the image should be watermarked. Return false to prevent watermarking.
+			 * @param Watermark $watermark          Watermark object.
+			 * @param integer   $attachment_id      Attachment ID.
+			 * @param WP_Post   $attachment         Attachment post.
+			 * @param array     $meta               Attachment metadata.
+			 * @param array     $applied_watermarks Array containing all watermarks applied to this attaachment.
+			 */
+			return apply_filters( 'easy-watermark/should-apply-watermark', true, $watermark, $attachment_id, $attachment, $meta, $applied_watermarks );
+		} );
+
+		$filepath = get_attached_file( $attachment_id );
+
+		if ( ! $filepath ) {
+			return false;
+		}
+
+		$sizes    = isset( $meta['sizes'] ) && is_array( $meta['sizes'] ) ? $meta['sizes'] : [];
+		$baename  = isset( $meta['file'] ) ? wp_basename( $meta['file'] ) : '';
+
+		if ( isset( $meta['file'] ) ) {
+			$sizes['full'] = [
+				'file'      => $meta['file'],
+				'mime-type' => $attachment->post_mime_type,
+			];
+		}
+
+		$this->resolver->reset();
+		$this->resolver->set_attachment( $attachment );
+
+		$this->do_backup( $attachment_id );
+
+		foreach ( $sizes as $size => $image ) {
+			$apply = false;
+
+			foreach ( $watermarks as $watermark ) {
+				if ( in_array( $size, $watermark->image_sizes, true ) ) {
+					$apply = true;
+
+					if ( 'text' === $watermark->type ) {
+							$watermark->text = $this->resolver->resolve( $watermark->text );
+					}
+
+					$this->processor->add_watermark( $watermark );
+
+					if ( ! array_key_exists( $watermark->ID, $applied_watermarks ) ) {
+						$applied_watermarks[ $watermark->ID ] = $watermark->post_title;
+					}
+				}
+			}
+
+			if ( true === $apply ) {
+				$image_file = str_replace( $baename, wp_basename( $image['file'] ), $filepath );
+
+				$this->processor
+					->set_file( $image_file )
+					->set_param( 'image_type', $image['mime-type'] );
+
+				$results = $this->processor->process();
+
+				$this->processor->clean();
+
+				if ( is_array( $results ) ) {
+					foreach ( $results as $watermark_id => $result ) {
+						if ( is_wp_error( $result ) ) {
+							/* translators: watermark name, image size, original error message. */
+							$error->add( 'watermark_error', sprintf( __( 'Watermark "%1$s" couldn\'t be applied for "%2$s" image size: %3$s', 'easy-watermark' ), Watermark::get( $watermark_id )->post_title, $size, $result->get_error_message() ) );
+						}
+					}
+				}
+			}
+		}
+
+		$error_messages = $error->get_error_messages();
+		$has_error      = ! empty( $error_messages );
+		if ( false === $this->settings->get_setting( 'backup/backup' ) || true === $has_error ) {
+			$this->clean_backup( $attachment_id );
+		}
+
+		if ( empty( $error_messages ) ) {
+			update_post_meta( $attachment_id, '_ew_applied_watermarks', $applied_watermarks );
+			update_post_meta( $attachment_id, '_ew_attachment_version', time() );
+
+			return true;
+		}
+
+		$this->restore_backup( $attachment_id, $meta );
+
+		return $error;
+
+	}
+
+	/**
+	 * Performs attachment backup
+	 *
+	 * @param  integer $attachment_id Attachment ID.
+	 * @return bool|WP_Error
+	 */
+	public function do_backup( $attachment_id ) {
+
+		if ( ! $this->backupper instanceof BackupperInterface ) {
+			return false;
+		}
+
+		$has_backup = get_post_meta( $attachment_id, '_ew_has_backup', true );
+
+		if ( '1' === $has_backup ) {
+			return false;
+		}
+
+		$result = $this->backupper->backup( $attachment_id );
+
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+
+		update_post_meta( $attachment_id, '_ew_has_backup', true );
+
+		return true;
+
+	}
+
+	/**
+	 * Restores attachment backup
+	 *
+	 * @param  integer $attachment_id Attachment ID.
+	 * @param  array   $old_meta      Attachment metadata array.
+	 * @return true|WP_Error
+	 */
+	public function restore_backup( $attachment_id, $old_meta ) {
+
+		if ( ! is_array( $old_meta ) ) {
+			return;
+		}
+
+		if ( ! $this->backupper instanceof BackupperInterface ) {
+			return;
+		}
+
+		$has_backup = get_post_meta( $attachment_id, '_ew_has_backup', true );
+
+		if ( '1' !== $has_backup ) {
+			return;
+		}
+
+		// Set lock to prevent regenerated thumbnails from being watermarked.
+		$this->lock = true;
+
+		$restored = $this->backupper->restore( $attachment_id );
+
+		if ( is_wp_error( $restored ) ) {
+			return $restored;
+		}
+
+		$current_file = get_attached_file( $attachment_id );
+
+		if ( ! $current_file ) {
+			return;
+		}
+
+		$filebasename = wp_basename( $current_file );
+
+		if ( isset( $old_meta['sizes'] ) && is_array( $old_meta['sizes'] ) ) {
+			foreach ( $old_meta['sizes'] as $size => $image ) {
+				if ( ! isset( $image['file'] ) ) {
+					continue;
+				}
+
+				$file = str_replace( $filebasename, wp_basename( $image['file'] ), $current_file );
+				file_exists( $file ) && unlink( $file );
+			}
+		}
+
+		wp_update_attachment_metadata( $attachment_id, wp_generate_attachment_metadata( $attachment_id, $current_file ) );
+
+		update_post_meta( $attachment_id, '_ew_attachment_version', time() );
+		delete_post_meta( $attachment_id, '_ew_applied_watermarks' );
+		delete_post_meta( $attachment_id, '_ew_has_backup' );
+
+		$this->lock = false;
+
+		return true;
+
+	}
+
+	/**
+	 * Removes attachment backup
+	 *
+	 * @param  integer $attachment_id Attachment ID.
+	 * @return true|WP_Error
+	 */
+	public function clean_backup( $attachment_id ) {
+
+		if ( ! $this->backupper instanceof BackupperInterface ) {
+			return;
+		}
+
+		$result = $this->backupper->clean( $attachment_id );
+
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+
+		delete_post_meta( $attachment_id, '_ew_has_backup' );
+
+		return true;
+
+	}
+
+	/**
+	 * Prints text preview
+	 *
+	 * @param  Watermark $watermark Watermark object.
+	 * @param  string    $format       Preview format (jpg|png).
+	 * @return void
+	 */
+	public function print_text_preview( $watermark, $format ) {
+
+		// Clean output buffer to prevent image corruption
+		while ( ob_get_level() ) {
+			ob_end_clean();
+		}
+
+		if ( 'text' !== $watermark->type ) {
+			return;
+		}
+
+		if ( $watermark->text ) {
+			$watermark->text = $this->resolver->resolve( $watermark->text );
+		} else {
+			$watermark->text = sprintf( '{%s}', _x( 'no_text', 'Placeholder for watermark text preview if no text specified.', 'easy-watermark' ) );
+		}
+
+		$result = $this->processor->print_text_preview( $watermark, $format );
+
+		if ( is_wp_error( $result ) ) {
+			status_header( 500 );
+		}
+
+		exit;
+
+	}
+
+	/**
+	 * Prints watermark preview
+	 *
+	 * @param  Watermark $watermark Watermark object.
+	 * @param  string    $format    Preview format (jpg|png).
+	 * @param  string    $size      Preview image size.
+	 * @return void
+	 */
+	public function print_preview( $watermark, $format, $size ) {
+
+		// Tenta aumentar o limite de memória para evitar erros com imagens grandes (fallback full)
+		@ini_set( 'memory_limit', '512M' );
+
+		// Clean output buffer to prevent image corruption
+		while ( ob_get_level() ) {
+			ob_end_clean();
+		}
+
+		// Get preview image ID defined in options
+		$attachment_id = get_option( '_ew_preview_image_id' );
+
+		if ( ! $attachment_id ) {
+			return;
+		}
+
+		// If requested size is not checked in this watermark, remove watermark (show original)
+		if ( ! in_array( $size, $watermark->image_sizes, true ) ) {
+			$watermark = null;
+		}
+
+		$attachment = get_post( $attachment_id );
+
+		// Resolve placeholders if it is a text watermark
+		if ( $watermark && 'text' === $watermark->type ) {
+			$this->resolver->set_attachment( $attachment );
+			$watermark->text = $this->resolver->resolve( $watermark->text );
+		}
+
+		$meta = get_post_meta( $attachment_id, '_wp_attachment_metadata', true );
+
+		if ( ! is_array( $meta ) ) {
+			return;
+		}
+
+		$filepath = get_attached_file( $attachment_id );
+
+		if ( ! $filepath ) {
+			return;
+		}
+
+		$sizes    = $meta['sizes'];
+		$baename  = wp_basename( $meta['file'] );
+
+		// Add 'full' size to available sizes list
+		$sizes['full'] = [
+			'file'      => $meta['file'],
+			'mime-type' => $attachment->post_mime_type,
+		];
+
+		// Verifica se o tamanho solicitado existe nos metadados da imagem
+		if ( ! array_key_exists( $size, $sizes ) ) {
+			// Se o tamanho solicitado não existir (ex: metadados desatualizados), tenta usar 'full' como fallback
+			if ( isset( $sizes['full'] ) ) {
+				$size = 'full';
+			} else {
+				return false;
+			}
+		}
+
+		$image      = $sizes[ $size ];
+		// Resolve o caminho do arquivo usando path_join para compatibilidade (Windows/Unix)
+		$image_file = path_join( dirname( $filepath ), wp_basename( $image['file'] ) );
+
+		if ( function_exists( 'wp_normalize_path' ) ) {
+			$image_file = wp_normalize_path( $image_file );
+		}
+
+		// Verifica se o arquivo existe fisicamente
+		if ( ! file_exists( $image_file ) ) {
+			// Se não existir, tenta usar o arquivo original como fallback
+			$fallback_found = false;
+			
+			// Tentativa 1: Usar metadados de 'full'
+			if ( isset( $sizes['full']['file'] ) ) {
+				$full_file = path_join( dirname( $filepath ), wp_basename( $sizes['full']['file'] ) );
+				if ( function_exists( 'wp_normalize_path' ) ) {
+					$full_file = wp_normalize_path( $full_file );
+				}
+				if ( file_exists( $full_file ) ) {
+					$image_file = $full_file;
+					// Atualiza o mime-type para o da imagem original
+					if ( isset( $sizes['full']['mime-type'] ) ) {
+						$image['mime-type'] = $sizes['full']['mime-type'];
+					}
+					$fallback_found = true;
+				}
+			}
+			
+			// Tentativa 2: Usar get_attached_file() diretamente se a tentativa 1 falhar
+			if ( ! $fallback_found && $filepath ) {
+				$direct_file = $filepath;
+				if ( function_exists( 'wp_normalize_path' ) ) {
+					$direct_file = wp_normalize_path( $direct_file );
+				}
+				if ( file_exists( $direct_file ) ) {
+					$image_file = $direct_file;
+					// Assume o mime-type principal do anexo
+					$image['mime-type'] = $attachment->post_mime_type;
+					$fallback_found = true;
+				}
+			}
+			
+			if ( ! $fallback_found ) {
+				return false;
+			}
+		}
+
+		// Log Debug
+		$log_file = dirname( dirname( dirname( __DIR__ ) ) ) . '/debug_preview.log';
+		$log_entry = sprintf(
+			"[%s] Request Size: %s | Image File: %s | Exists: %s | Mime: %s\n",
+			date('Y-m-d H:i:s'),
+			$size,
+			$image_file,
+			file_exists($image_file) ? 'YES' : 'NO',
+			isset($image['mime-type']) ? $image['mime-type'] : 'N/A'
+		);
+		file_put_contents( $log_file, $log_entry, FILE_APPEND );
+
+		// Define o arquivo no processador (resetando estado anterior se necessário)
+		$this->processor->set_file( $image_file );
+
+		// Define o tipo de imagem explicitamente para garantir carregamento correto após reset
+		if ( isset( $image['mime-type'] ) ) {
+			$this->processor->set_param( 'image_type', $image['mime-type'] );
+		} else {
+			// Fallback: deriva do nome do arquivo se mime-type não estiver definido (comum em tamanhos intermediários)
+			$filetype = wp_check_filetype( $image_file );
+			if ( ! empty( $filetype['type'] ) ) {
+				$this->processor->set_param( 'image_type', $filetype['type'] );
+			}
+		}
+
+		$result = $this->processor->print_preview( $watermark, $format );
+
+		if ( false === $result ) {
+			status_header( 404 );
+		} elseif ( is_wp_error( $result ) ) {
+			status_header( 500 );
+		}
+
+		exit;
+
+	}
+}
